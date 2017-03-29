@@ -1,0 +1,244 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="OuterMasterPage.master.cs" Inherits="OuterMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   
+   <style>
+    
+    #nav {
+        float: left;
+        font:  14px Arial, Helvetica, Sans-serif;
+        border: 0px solid #dc3501;
+        border-top: 0px solid #dc3501;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        overflow: hidden;
+        
+}
+
+#nav ul {
+        margin:0;
+        padding:0;
+        list-style:none;
+}
+
+#nav ul li {
+        float:left;
+}
+
+#nav ul li a {
+        float: left;
+        color:#ffffff;
+        padding: 5px 10px;
+        text-decoration:none;
+        background:#dc3501;
+        
+        background: -moz-linear-gradient( center bottom, #dc3501 9%, #dc3501 55%, #dc3501 78% );
+        background: -o-linear-gradient( center bottom, #dc3501 9%, #dc3501 55%, #dc3501 78% );
+       
+        border-left: 0px solid rgba(255, 255, 255, 0.05);
+        border-right: 0px solid rgba(0,0,0,0.2);
+       
+}
+
+#nav li ul {
+        background:#3C4042;
+        
+        background-image: -moz-linear-gradient( center bottom, #dc3501 9%, #dc3501 55%, #dc3501 78% );
+        background-image: -o-linear-gradient( center bottom, #dc3501 9%, #dc3501 55%, #dc3501 78% );
+        border-radius: 0 0 10px 10px;
+        -moz-border-radius: 0 0 10px 10px;
+        -webkit-border-radius: 0 0 10px 10px;
+        left: -999em;
+        margin: 30px 0 0;
+        position: absolute;
+        width: 182px;
+        z-index: 9999;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset; 
+        -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset; 
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset; 
+        border: 0px solid rgba(0, 0, 0, 0.5);
+}
+
+#nav li ul a {
+        background: none;
+        border: 0 none;
+        margin-right: 0;
+        width: 200px;
+        box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        border-bottom: 0px solid transparent;
+        border-top: 0px solid transparent;
+}
+
+#nav ul li a:hover,
+#nav ul li:hover > a {
+        color: #252525;
+      
+     
+}
+
+#nav li ul a:hover, 
+#nav ul li li:hover > a  {
+  
+      
+}
+
+
+
+#nav li:hover ul {
+        left: auto;
+}
+
+
+#nav li li ul {
+        margin: 0px 0 0 240px;
+        -webkit-border-radius: 0 10px 10px 10px;
+        -moz-border-radius: 0 10px 10px 10px;
+        border-radius: 0 10px 10px 10px;
+        visibility:hidden;
+}
+
+#nav li li:hover ul {
+        visibility:visible;
+}
+    </style>
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Canadian Soccer</title>
+    <link href="css/layout-aspx.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" src="http://www.canadiansoccerclub.com/js/jquery.js"></script>
+    <script language="javascript" src="http://www.canadiansoccerclub.com/js/jquery.form.js"></script>
+    <script language="javascript" src="http://www.canadiansoccerclub.com/js/common.js"></script>
+    <link rel="stylesheet" href="http://www.canadiansoccerclub.com/js/calendar/ui.datepicker.css"
+        type="text/css" media="screen">
+    <script type="text/javascript" src="http://www.canadiansoccerclub.com/js/calendar/ui.datepicker.js"></script>
+    <script language="javascript" type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('#dob').datepicker();
+        });
+
+        function ShowNotImplemented() {
+            alert("Not Implemented");
+        }
+
+        function BODY_doLoad() {
+            var customValMsg = document.getElementById("hfValidationMessage");
+            if (customValMsg.value != "") {
+                alert(customValMsg.value);
+            }
+        }	
+    </script>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body onload="BODY_doLoad()">
+        <form id="form1" runat="server" style="background-image: url('./Images/bg.jpg');
+    background-repeat: no-repeat;background-color: #000000;height: 1250px;  ">
+    <div style="background-color: #000000; color: #FFFFFF; width: 998px; position: relative;
+        top: 20px; left: 200px; height: 1150px; border:0px solid"/>
+    <div>
+     <div id="mainContainer">
+   <marquee onmouseover="stop()" scrollamount="2" behavior="alternate" onmouseout="start()">Do you want to play in <span style="color:red"><b> Hershey Centre</b></span>? <a href="HersheysCentre.aspx" style="color:white">Click here to register</a> </marquee>
+
+   <div id="menu-top"> 
+
+     <div id="nav"> 
+   
+<ul> 
+<li><a href="Default.aspx">HOME</a></li> 
+<li><a href="schedule.aspx">SCHEDULE</a></li> 
+<li><a onclick="ShowNotImplemented()">PHOTOS</a></li> 
+<li><a onclick="ShowNotImplemented()">VIDEOS</a>      
+</li> 
+ <li><a href="Historyofsoccer.aspx">HISTORY OF SOCCER</a>
+ <ul>
+   <li><a href="soccerVSfootball.aspx">FOOTBALL VS SOCCER</a></li> 
+ </ul>
+ 
+ </li>  
+
+<li><a href="popularity.aspx">POPULARITY</a> 
+        <ul>        
+        <li><a href="soccerincanada.aspx">SOCCER IN CANADA</a></li> 
+        
+         <li><a href="PremierLeague.aspx">PREMIER LEAGUES</a></li> 
+               
+                <li><a href="championship.aspx">CHAMPIONSHIP</a></li>          
+                
+          </ul>       
+        </li> 
+        
+        
+
+<li><a href="WinterReg.aspx">SPRING/SUMMER</a></li> 
+<li><a href="contactus.aspx">CONTACT US</a></li> 
+</ul> 
+
+
+</div>
+
+
+
+</div>
+
+            <!--menu start here..
+            <div id="menu-top">
+                <ul>
+                    <li class="imgleft-sep"><a href="Default.aspx">HOME</a></li>
+                   <li><a href="schedule.aspx">SCHEDULE</a></li>
+                    <li><a onclick="ShowNotImplemented()">PHOTOS</a></li>
+                    <li><a onclick="ShowNotImplemented()">VIDEOS</a></li>
+                    <li><a href="soccerVSfootball.aspx">FOOTBALL V/S SOCCER</a></li>
+                    
+                    <li><a href="SoccerInCanada.aspx?id=2342">SOCCER IN CANADA</a></li>
+                    <li><a href="ContactUs.aspx">CONTACT US</a></li>
+                </ul>
+            </div>-->
+            <!--menu End here..-->
+            <!--header start here..-->
+            <div id="header" runat="server">
+            </div>
+              <div id="header21" runat="server" visible="false" >
+            </div>
+ <div id="header321" runat="server" visible="false" >
+            </div>
+ <div id="header4321" runat="server" visible="false" >
+            </div>
+ <div id="header54321" runat="server" visible="false" >
+            </div>
+
+  <div id="header654321" runat="server" visible="false" >
+            </div>
+
+
+
+           <!--header End here..-->
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+         <!--body container End here..-->
+            <!--footer start here..  -->
+            <div class="footer">
+                <ul>
+                    <li class="leftborder"><a href="Default.aspx">HOME</a></li>
+                    <li><a href="schedule.aspx">SCHEDULE</a></li>
+                    <li><a href="">PHOTO</a></li>
+                    <li><a href="">VIDEOS</a></li>
+                    <li><a href="ContactUs.aspx">CONTACTS</a></li>
+                </ul>
+                <p>
+                    &copy; 2010 Privacy Policy</p>
+            </div>
+            <!--footer End here..  -->
+    </div>
+    </div>
+    </form>
+</body>
+</html>

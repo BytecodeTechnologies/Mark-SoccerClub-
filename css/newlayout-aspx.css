@@ -1,0 +1,122 @@
+/*@charset "utf-8";
+ design by: safdar abbas
+company name: layerlogic
+wwww.layerlogic.net
+
+*/
+
+
+
+body{ font-family:Arial, Helvetica, sans-serif; font-size:14px; margin:0; padding:0; background-color:#040404; line-height:1.5; /*background-image:url(../images/bg.jpg); background-repeat:no-repeat; background-attachment:fixed; background-position:right;*/}
+img{ border:none;}
+#bodybg{ width:100%; height:auto; margin:auto; background-image:url(../images/bg.jpg); background-repeat:no-repeat; background-position:center top;}
+
+/*Top Menu */
+
+#menu-top{ width:979px; height:34px; background-image:url(../images/menu-bg.jpg); margin:auto; padding:0; margin-top:39px;}
+#menu-top ul{ list-style:none; margin:0;  padding:0;}
+#menu-top ul li{ list-style:none; margin:0; float:left; background-image:url(../images/mneu-seprator.jpg); background-repeat:no-repeat;  display:block; height:34px;}
+#menu-top ul  .imgleft-sep{ list-style:none; margin:0; float:left; background-image:none;  display:block; height:30px;}
+
+#menu-top ul li a{ font-size:15px; color:#FFFFFF; text-decoration:none; display:block; height:30px; padding: 4px 15px 0 15px;}
+#menu-top ul li a:hover,.current{ font-size:15px; color:#FFFFFF; text-decoration:none; background-color:#000; display:block; height:30px;padding: 4px 15px 0 15px; }
+
+
+/*Top Menu End*/
+
+
+
+#mainContainer{ width:999px; height: auto; overflow:hidden; margin:auto; background-color:#000000; }
+
+/*Header Start here.*/
+
+#header{width:980px; height:250px; margin:auto; background-image:url(../images/header.jpg); background-repeat:no-repeat; margin-top:12px;}
+
+/*Header End here.*/
+
+#bodyContainer{width:980px; height:auto; margin:auto;}
+#bodyContainer .content{width:749px; height:auto; float:left; margin-top:12px; /*padding-left:13px;*/}
+#bodyContainer .content h1{ font:18px; color:#FFFFFF; margin:0; padding:0;}
+#bodyContainer .content p{ font-size:14px; color:#868686; }
+#bodyContainer .content hr{ width:700px; border-bottom:dashed 1px #303030;}
+
+
+
+#bodyContainer .homepage-img{width:749px; height:auto; float:left; margin-top:12px;}
+.leftimg{ float:left; margin-right:20px;
+    width: 748px;
+    height: 423px;
+}
+#bodyContainer .homepage-img h2{ font-size:16px; margin:0;  padding:0; color:#FFFFFF;}
+
+#bodyContainer .gallery{width:767px; height:189px; float:left; margin-top:12px; background-image:url(../images/gallery-bg.jpg); background-repeat:repeat-x;}
+#bodyContainer .gallery h2{ font-size:16px; margin:0; padding-left:10px; padding-bottom:4px; color:#FFFFFF;}
+#bodyContainer .gallery .g-thumb{width:131px; height:131px; float:left; background-color:#FFFFFF; border:1px #605e5e solid; margin-left:10px; padding:8px 4px 4px 4px;}
+#bodyContainer .gallery .g-thumb:hover{width:131px; height:131px; float:left; background-color:#000; border:1px #fff solid; margin-left:10px; padding:8px 4px 4px 4px;}
+
+
+lable{ width:120px; height: auto; float:left; color:#000000; font-size:14px; margin-bottom:2px; margin-top:2px;}
+input{
+    border: 2px #b5b4b4 solid;
+    padding: 2px;
+    margin-top: 6px;
+}
+.style1 {color: #FF3300}
+.submit{ border:none;}
+
+
+#bodyContainer .right-side{
+    width: 203px;
+    height: auto;
+    float: right;
+    margin-top: 12px;
+    color: #000000;
+}
+#bodyContainer .right-side .login{
+    width: 173px;
+    height: auto;
+    float: left;
+    background-color: #e3e1e1;
+    padding: 15px;
+    color: #000000;
+}
+#bodyContainer .right-side .login h2 { font:16px; color:#000000; margin:0; padding:0; font-weight:bold; border-bottom:1PX #666666 solid;}
+#bodyContainer .right-side .login a{color:#333333; text-decoration:none; font-size:11px; text-decoration:underline;}
+#bodyContainer .right-side .login a:hover{color: #FF3300;text-decoration:none;}
+#bodyContainer .right-side .login .a{color:#d03604; text-decoration:none; font-size:12px; text-decoration:underline;}
+
+/*News Section*/
+
+#bodyContainer .right-side .news{ width:190px; height:auto; float:left; background-color:#2a2a2a; margin-top:8px; padding:6px;}
+.newsimg{float:left; margin-right:4px; margin-top:6px;}
+#bodyContainer .right-side .news .newsDetail{ width:190px; height:auto;font-size:14px; color:#FFFFFF; margin:0; padding:0; border-bottom:1px #CCCCCC dashed; margin-top:8PX; padding-bottom:6px;}
+
+#bodyContainer .right-side .news h2{ font-size:18px; color:#FFFFFF; margin:0; padding:0; border-bottom:1px #CCCCCC solid;}
+#bodyContainer .right-side .news h3{ font-size:14px; font-weight:bold; color:#FFFFFF; margin:0; padding:0;}
+
+/*Footer here
+*/
+ .footer{width:980px; height:72px; float:left; background-color:#000000;}
+.footer ul { list-style:none; margin:0; padding:10px;}
+.footer ul li { list-style:none; margin:0; padding-left:10px; padding-right:10px; float:left; border-left:1px #CCCCCC solid;}
+ .footer ul  .leftborder { list-style:none; margin:0; padding-left:10px; padding-right:10px; float:left; border-left:none;}
+
+.footer ul li a { font-size:12px; color:#FFFFFF; text-decoration:none;}
+.footer ul li a:hover { font-size:12px; color:#ccc; text-decoration: underline;}
+ .footer p { font-size:12px; color:#fff; padding-left:18px;}
+
+
+/*sup page*/
+
+#bodyContainer .subcontent{width:749px; height:auto; float:left; margin-top:12px; /*padding-left:13px;*/}
+#bodyContainer .subcontent h1{ font:18px; color:#FFFFFF; margin:0; padding:0;}
+#bodyContainer .subcontent p{ font-size:14px; }
+#bodyContainer .subcontent hr{ width:749px;}
+
+
+#bodyContainer .subcontent-2{width:980px; height:auto; float:left; margin-top:12px; /*padding-left:13px;*/}
+#bodyContainer .subcontent-2 h1{ font:18px; color:#FFFFFF; margin:0; padding:0;}
+#bodyContainer .subcontent-2 p{ font-size:14px; }
+#bodyContainer .subcontent-2 hr{ width:980px;}
+
+#bodyContainer .subcontent-2 .error{ width:400px; height: auto; border:1px #FF0000 solid; padding:10px; margin:auto; color:#FF0000;}

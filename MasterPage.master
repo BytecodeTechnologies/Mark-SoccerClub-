@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    
+    
+    
+    
+    <title>Canadian Soccer</title>
+    <link href="css/layout-aspx.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+        function ShowNotImplemented()
+        {
+            alert("Not Implemented");
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: #000000; font-family: Arial, Helvetica, sans-serif;">
+    <form id="form1" runat="server" style="background-image: url('./Images/bg.jpg');
+    background-repeat: no-repeat;">
+    <div style="background-color: #000000; color: #FFFFFF; width: 911px; position: relative;
+        top: 20px; left: 226px; height: 1033px;">
+      
+        <asp:ContentPlaceHolder ID="cphMain" runat="server">
+        </asp:ContentPlaceHolder>
+        <!--footer start here..  -->
+            <div style="position:static" class="footer">
+                <ul>
+                    <li class="leftborder"><a href="Default.aspx">HOME</a></li>
+                    <li><a href="schedule.aspx">SCHEDULE</a></li>
+                    <li><a href="">PHOTO</a></li>
+                    <li><a href="">VIDEOS</a></li>
+                    <li><a href="ContactUs.aspx">CONTACTS</a></li>
+                </ul>
+                <p>
+                    &copy; 2010 Privacy Policy</p>
+            </div>
+            <!--footer End here..  -->
+    </div>
+    </form>
+</body>
+</html>
