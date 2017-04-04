@@ -78,11 +78,16 @@
         .style7 {
             width: 673px;
         }
+        .labelcolor{
+            color:black;
+        }
     </style>
     <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script type="text/javascript">
+    <script src="ImageScript/ImageUploadScript.js"></script>
+    <link href="ImageUploadCssStylesheet/PopupSheet.css" rel="stylesheet" />
+   <%-- <script type="text/javascript">
         $(function () {
             $('#<%=lnkConfirmationDeadline.ClientID%>').click(function () {
                 $("#ConfirmationDeadlinepopupdiv").dialog({
@@ -102,50 +107,116 @@
                 return false;
             });
         })
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="mainContent" runat="server" ContentPlaceHolderID="cphMain">
     <asp:ScriptManager ID="sm" runat="server">
     </asp:ScriptManager>
     <div>
         <br />
-        <div id="ConfirmationDeadlinepopupdiv" title="Basic modal dialog" style="display: none">
-           
+        <%--<div id="ConfirmationDeadlinepopupdiv" title="Basic modal dialog" style="display: none">
+
             <table>
                 <tr>
+                    <asp:Label ID="lblmsgDisplay" runat="server"></asp:Label>
                     <td>Confirmation Deadline for TuesDay</td>
-                    <td><asp:TextBox ID="txtCDTuesday" runat="server"></asp:TextBox></td>
-                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Only numerals allowed!"
-                                ControlToValidate="txtCDTuesday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+                    <td>
+                        <asp:TextBox ID="txtCDTuesday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtCDTuesday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
                 </tr>
-                 <tr>
+                <tr>
                     <td>Confirmation Deadline for Thursday</td>
-                    <td><asp:TextBox ID="txtCDThursday" runat="server"></asp:TextBox></td>
-                      <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Only numerals allowed!"
-                                ControlToValidate="txtCDThursday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
-            
+                    <td>
+                        <asp:TextBox ID="txtCDThursday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtCDThursday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
                 </tr>
-                 <tr>
+                <tr>
                     <td>Confirmation Deadline for Friday</td>
-                    <td><asp:TextBox ID="txtCDFriday" runat="server"></asp:TextBox></td>
-                      <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Only numerals allowed!"
-                                ControlToValidate="txtCDFriday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
-            
+                    <td>
+                        <asp:TextBox ID="txtCDFriday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtCDFriday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
                 </tr>
-                 <tr>
+                <tr>
                     <td>Confirmation Deadline for Sunday</td>
-                    <td><asp:TextBox ID="txtCDSunday" runat="server"></asp:TextBox></td>
-                      <asp:RegularExpressionValidator ID="reCDSunday" runat="server" ErrorMessage="Only numerals allowed!"
-                                ControlToValidate="txtCDSunday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
-            
+                    <td>
+                        <asp:TextBox ID="txtCDSunday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="reCDSunday" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtCDSunday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                 </tr>
             </table>
-        </div>
-        <asp:Button ID="btnConfirmationDeadline" style = "display:none" OnClick="btnConfirmationDeadline_Click" runat="server"/>
+        </div>--%>
+        <%-- <asp:Button ID="btnconfirmationDeadLine" Style="display: none"   runat="server" />
+        </div>--%>
+
+         <div id="bodyContainer">
+        <div class="content" style="margin-bottom: 30px">
+          
+            <br />
+        
+            <%--Code for pop up--%>
+            <div id="light" class="white_content" style="height:auto">
+
+                <div style="width: 100%; display: inline-table; text-align: right; margin-bottom: 10px; padding: 2px";>
+                    <a href="javascript:void(0)" onclick="ClosePopup()">X
+                    </a>
+                </div>
+                <div id="viewform">
+                   <table>
+                <tr>
+                    <%--<asp:Label ID="Label53" runat="server"></asp:Label>--%>
+                    <td class="labelcolor">Confirmation Deadline for TuesDay</td>
+                    <td>
+                        <asp:TextBox ID="txtboxTuesday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtboxTuesday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+                </tr>
+                <tr>
+                    <td class="labelcolor">Confirmation Deadline for Thursday</td>
+                    <td>
+                        <asp:TextBox ID="txtboxThursday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtboxThursday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
+                </tr>
+                <tr>
+                    <td class="labelcolor">Confirmation Deadline for Friday</td>
+                    <td>
+                        <asp:TextBox ID="txtboxFriday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtboxFriday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
+                </tr>
+                <tr>
+                    <td class="labelcolor">Confirmation Deadline for Sunday</td>
+                    <td>
+                        <asp:TextBox ID="txtboxSunday" runat="server"></asp:TextBox></td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ErrorMessage="Only numerals allowed!"
+                        ControlToValidate="txtboxSunday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                       </table>
+                    <asp:Button ID="btnSave" OnClick="btnSave_Click" Text="Save"  runat="server" />
+                    </div>
+               
+                </div>
+                
+                     
+            <div id="fade" class="black_overlay"></div>
+
         <asp:Panel ID="adminMenuPanel" runat="server">
             <div id="adminMenu" runat="server" class="menu">
                 <ul>
@@ -156,7 +227,9 @@
                     <li><a href="Recyclebin.aspx">RECYCLEBIN</a></li>
                     <li><a href="Main.aspx?action=edit">EDIT PROFILE</a></li>
                     <li><a href="Main.aspx?action=history">HISTORY</a></li>
-                    <li><a href="Main.aspx?action=managehersheyusers">Hershey Users</a></li>
+                    <li><a href="Main.aspx?action=managehersheyusers">HERSHEY USERS</a></li>
+                    <li><a href="ManagePicture.aspx">MANAGE PICTURES</a></li>
+                    <li><a href="ManageHersheyUser.aspx">MANAGE HERSHEY USERS</a></li>
                     <li><a href="Main.aspx?action=logout">LOG OUT</a></li>
                 </ul>
             </div>
@@ -181,7 +254,7 @@
                 <br />
                 <br />
                 <br />
-                <a href="#" style="color:white" id="lnkConfirmationDeadline" runat="server">Confirmation Deadline</a>
+                <a href="#" style="color: white" id="lnkConfirmationDeadline" onclick="openPopup();" runat="server">Confirmation Deadline</a>
                 <%--<asp:Button ID="lnkConfirmationDeadline" runat="server" Text="Confirmation Deadline" />--%>
                 <br />
                 <asp:Label ID="lbErrorMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -775,6 +848,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;
+                           
                             <asp:Label ID="Label42" runat="server" Text="Players not interested to play this match :"
                                 ForeColor="White"></asp:Label>
                             <br />
@@ -906,6 +980,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
                 <asp:HyperLink ID="hyp" runat="server" ForeColor="White" Font-Bold="true" NavigateUrl="~/ManageSchedule.aspx">Schedule Management</asp:HyperLink>
                 <br />
                 <asp:GridView ID="grdUM" runat="server" AutoGenerateColumns="False" BackColor="White"
@@ -980,6 +1055,7 @@
                 </asp:GridView>
                 <div style="height: 150px">
                     &nbsp;
+               
                 </div>
             </asp:View>
 
@@ -1061,8 +1137,12 @@
                 </asp:UpdatePanel>
                 <div style="height: 150px">
                     &nbsp;
+               
                 </div>
             </asp:View>
         </asp:MultiView>
+    </div>
+    </div>
+    </div>
     </div>
 </asp:Content>

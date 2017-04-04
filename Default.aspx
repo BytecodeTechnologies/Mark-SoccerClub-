@@ -92,15 +92,6 @@
                         <asp:Label ID="lblhometext" runat="server"></asp:Label>
                         </p>
                       
-                     
-                      
-  
-         
-           
-                            
-                           
-                           
-                       
                     <hr />
                     <div class="homepage-img">
                         <asp:Literal ID="litVideoMarkUp" runat="server"></asp:Literal>

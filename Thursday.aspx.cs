@@ -144,10 +144,6 @@ public partial class Thursday : System.Web.UI.Page
             }
 
         }
-
-
-
-
     }
     protected void Timer1_Tick(object sender, EventArgs e)
     {

@@ -93,6 +93,7 @@ CodeFile="Recyclebin.aspx.cs" Inherits="Recyclebin" %>
                     <li><a href="Recyclebin.aspx">RECYCLEBIN</a></li>
                     <li><a href="Main.aspx?action=edit">EDIT PROFILE</a></li>
                     <li><a href="Main.aspx?action=history">HISTORY</a></li>
+                    <li><a href="ManagePicture.aspx">Manage Pictures</a></li>
                     <li><a href="Main.aspx?action=logout">LOG OUT</a></li>
                 </ul>
             </div>

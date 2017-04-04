@@ -216,31 +216,44 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
             cmd.ExecuteNonQuery();
             con.Close();
 
+              //--------------Delete if count is greater than the required user----------
 
-            lblmsginv.Text = "Attendence confirmation status is updated";
+            adp = new SqlDataAdapter("select Count(*) from " + table + " where IsAttending=1 and IsDeleted=0  and NextPDate='" + getNextPDate() + "'", con);
 
-
-            SqlDataAdapter adp3 = new SqlDataAdapter("select * from tblSetting", con);
-            DataSet ds3 = new DataSet();
-            adp3.Fill(ds3);
-
-            emailmsg = ds3.Tables[0].Rows[0]["CETempletSat"].ToString();
-
-            emailmsg = emailmsg.Replace("{PlayerName}", ((DataSet)Session["ds"]).Tables[0].Rows[0]["FName"].ToString());
-            emailmsg = emailmsg.Replace("{ConfirmedDate}", DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).ToLongDateString());
-            emailmsg = emailmsg.Replace("{PracticeDate}", Convert.ToDateTime(getNextPDate()).ToLongDateString());
-
-            if (Session["email"].ToString() == "no")
+            DataSet ds2222 = new DataSet();
+            adp.Fill(ds2222);
+            if (NoOfPalayerReq < Convert.ToInt32(ds2222.Tables[0].Rows[0][0]))
             {
-                MailMessage ms = new MailMessage("admin@canadiansoccerclub.com", ((DataSet)Session["ds"]).Tables[0].Rows[0]["Email"].ToString(), "Canadian Soccer Practice Attendance Confirmation", emailmsg);
-                SmtpClient smtp = new SmtpClient("canadiansoccerclub.com");
-                smtp.Credentials = new System.Net.NetworkCredential("admin@canadiansoccerclub.com", "&#24Service");
-                smtp.EnableSsl = false;
-                ms.IsBodyHtml = true;
-                smtp.Send(ms);
-                Session["email"] = "yes";
+                DeletePlayer(ds.Tables[0].Rows[0]["UserId"].ToString(), getNextPDate());
+                Response.Redirect("option.aspx?done=no");
             }
-            Response.Redirect("option.aspx?done=sat");
+            else
+            {
+                lblmsginv.Text = "Attendence confirmation status is updated";
+
+
+                SqlDataAdapter adp3 = new SqlDataAdapter("select * from tblSetting", con);
+                DataSet ds3 = new DataSet();
+                adp3.Fill(ds3);
+
+                emailmsg = ds3.Tables[0].Rows[0]["CETempletSat"].ToString();
+
+                emailmsg = emailmsg.Replace("{PlayerName}", ((DataSet)Session["ds"]).Tables[0].Rows[0]["FName"].ToString());
+                emailmsg = emailmsg.Replace("{ConfirmedDate}", DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).ToLongDateString());
+                emailmsg = emailmsg.Replace("{PracticeDate}", Convert.ToDateTime(getNextPDate()).ToLongDateString());
+
+                if (Session["email"].ToString() == "no")
+                {
+                    MailMessage ms = new MailMessage("admin@canadiansoccerclub.com", ((DataSet)Session["ds"]).Tables[0].Rows[0]["Email"].ToString(), "Canadian Soccer Practice Attendance Confirmation", emailmsg);
+                    SmtpClient smtp = new SmtpClient("canadiansoccerclub.com");
+                    smtp.Credentials = new System.Net.NetworkCredential("admin@canadiansoccerclub.com", "&#24Service");
+                    smtp.EnableSsl = false;
+                    ms.IsBodyHtml = true;
+                    smtp.Send(ms);
+                    Session["email"] = "yes";
+                }
+                Response.Redirect("option.aspx?done=sat");
+            }
         }
         else
         {
@@ -390,6 +403,23 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
                 }
             }
 
+            con.Close();
+            cmd.Dispose();
+        }
+        catch (Exception cc)
+        {
+            Response.Write(cc.Message);
+        }
+    }
+
+    public void DeletePlayer(string userid, string NextDate)
+    {
+        try
+        {
+            string table = "mijamal.tblPracticeConfirmation1";
+            SqlCommand cmd = new SqlCommand("delete from " + table + " where userid=" + userid + " and NextPDate='" + NextDate + "'", con);
+            con.Open();
+            cmd.ExecuteNonQuery();
             con.Close();
             cmd.Dispose();
         }

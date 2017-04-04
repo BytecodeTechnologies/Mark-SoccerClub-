@@ -14,8 +14,8 @@ using System.Net.Mail;
 public partial class Main : System.Web.UI.Page
 {
 
-    
-    SqlConnection con = new SqlConnection(ConfigurationSettings.AppSettings["ConnectionInfo"]);
+
+    SqlConnection con = new SqlConnection("Server=speedwell.arvixe.com;Database=canadiansoccerclub;User Id=mijamal;Password=2014db!@#$");
     SqlCommand cmd = new SqlCommand();
 
     public const string DateFormat = "dddd, MMMM dd, yyyy";
@@ -220,7 +220,7 @@ public partial class Main : System.Web.UI.Page
     {
         mvMain.ActiveViewIndex = 5;
         //lbPlayersConfirmingAttendance
-    
+
         SqlDataAdapter adp = new SqlDataAdapter();
 
         if (rbl2.SelectedIndex == 0)
@@ -338,6 +338,7 @@ public partial class Main : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         Int32 totp = 0;
         SqlDataAdapter adpd = new SqlDataAdapter("select PortNumber from mijamal.tblSetting", con);
         DataSet dsd = new DataSet();
@@ -360,6 +361,7 @@ public partial class Main : System.Web.UI.Page
         DataSet ds = new DataSet();
         if (!IsPostBack)
         {
+            GetData();  
             Session["email"] = "no";
             Session["emails"] = "no";
             if (Session["ds"] != null)
@@ -382,7 +384,7 @@ public partial class Main : System.Web.UI.Page
                 //rbl1.Items[1].Text = "Sunday Soccer";
                 rbl1.SelectedIndex = 1;
 
-                string[] controls1 = { "Tuesday Soccer", "Sunday Soccer", "Thursday Soccer","Friday Soccer" };
+                string[] controls1 = { "Tuesday Soccer", "Sunday Soccer", "Thursday Soccer", "Friday Soccer" };
                 rbl2.DataSource = controls1;
                 rbl2.DataBind();
                 rbl2.SelectedIndex = 1;
@@ -536,7 +538,7 @@ public partial class Main : System.Web.UI.Page
 
 
 
-                     totp = lbPlayersAccepted.Items.Count + lbOthersPlayersAccepted.Items.Count;
+                    totp = lbPlayersAccepted.Items.Count + lbOthersPlayersAccepted.Items.Count;
 
                     lblTot2.Text = "Total Confirmed Players: " + (lbPlayersAccepted.Items.Count + lbOthersPlayersAccepted.Items.Count).ToString();
                     string playername = ((DataSet)Session["ds"]).Tables[0].Rows[0]["Fname"].ToString() + " " + ((DataSet)Session["ds"]).Tables[0].Rows[0]["Sname"].ToString() + " (" + ((DataSet)Session["ds"]).Tables[0].Rows[0]["PlayerID"].ToString() + ")";
@@ -896,7 +898,7 @@ public partial class Main : System.Web.UI.Page
                 BindGridForHersheyUsers();
 
             }
-            
+
             if (Request.QueryString["action"] != null && Request.QueryString["action"].ToString() == "usermanagement")
             {
                 mvMain.ActiveViewIndex = 6;
@@ -936,7 +938,7 @@ public partial class Main : System.Web.UI.Page
                     adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,IsPaid from tblPracticeConfirmSaturday where IsAttending=1 and IsDeleted=0 and IsOthers=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
                     Session["sun"] = null;
                 }
-                
+
                 ds = new DataSet();
                 adp.Fill(ds);
 
@@ -966,9 +968,9 @@ public partial class Main : System.Web.UI.Page
                 }
                 if (rbl2.SelectedIndex == 3)
                 {
-                    
+
                     adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')'+' - '+ convert(varchar(19),CDate) as PName, CDate,IsPaid from tblPracticeConfirmSaturday where IsAttending=0 and isconfirmed=1 and IsDeleted=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
-                  
+
                 }
                 ds = new DataSet();
                 adp.Fill(ds);
@@ -1001,9 +1003,9 @@ public partial class Main : System.Web.UI.Page
                     Session["sun"] = null;
                 }
                 if (rbl2.SelectedIndex == 3)
-                {                   
+                {
                     adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,IsPaid from tblPracticeConfirmSaturday where IsAttending=1 and IsDeleted=0 and IsOthers=1 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
-                   
+
                 }
                 //adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate from tblPracticeConfirmation where IsDeleted=0 and NextPDate='" + getNextPDate() + "' and isOthers=1 and IsAttending=1", con);
                 ds = new DataSet();
@@ -1036,7 +1038,7 @@ public partial class Main : System.Web.UI.Page
 
             }
 
-        }             
+        }
 
     }
     public string getNextPDate()
@@ -1169,7 +1171,7 @@ public partial class Main : System.Web.UI.Page
                 days = 5.0;// 4.0;
             }
         }
-           
+
         return DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).AddDays(days).ToShortDateString();
     }
 
@@ -1317,7 +1319,7 @@ public partial class Main : System.Web.UI.Page
         }
         if (rb.SelectedIndex == 3)
         {
-           
+
             adp = new SqlDataAdapter("select UserId,isnew, Fname+' '+Sname+' ('+PlayerID+')' as PlayerName from tblUser where isNew=1 and saturday=1  and IsDeleted=0 and RoleID=2 order by isnew desc", con);
         }
 
@@ -1383,7 +1385,7 @@ public partial class Main : System.Web.UI.Page
             {
                 cmd.CommandText = "update tblUser set isPaid=1 where UserId=" + Session["id"].ToString();
             }
-             if (rb.SelectedIndex == 3)
+            if (rb.SelectedIndex == 3)
             {
                 cmd.CommandText = "update tblUser set isPaidSat=1 where UserId=" + Session["id"].ToString();
             }
@@ -1590,7 +1592,7 @@ public partial class Main : System.Web.UI.Page
         DataSet ds2 = new DataSet();
         adp1.Fill(ds2);
         string emailmsg = "";
-       
+
 
         if (ds2.Tables[0].Rows.Count > 0)
         {
@@ -1998,7 +2000,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
         SqlDataAdapter adpd = new SqlDataAdapter("select PortNumber from mijamal.tblSetting", con);
         DataSet dsd = new DataSet();
         adpd.Fill(dsd);
-        string query = ""; 
+        string query = "";
         if (dsd.Tables[0].Rows[0][0].ToString().Trim() == "0")
         {
             chkDaylightSaving.Checked = true;
@@ -2011,7 +2013,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
             lblDL.Text = "OFF";
             query = "UPDATE mijamal.tblSetting SET PortNumber=0";
         }
-    
+
 
         cmd.CommandText = query;
         cmd.Connection = con;
@@ -2105,7 +2107,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
     {
         //------------Remove this code------
 
-      //  SqlConnection con = new SqlConnection("Server=208.91.198.196;Database=bytechkl_160816;User Id=bytechkl_160816;Password=Icy2y_28");
+        //  SqlConnection con = new SqlConnection("Server=208.91.198.196;Database=bytechkl_160816;User Id=bytechkl_160816;Password=Icy2y_28");
         //-----------------------
         string query = @"update tblUser set IsDeleted=1 where UserId=" + ((LinkButton)sender).CommandArgument;
         query = query + ";update mijamal.tblPracticeConfirmation set IsDeleted=1 where UserId=" + ((LinkButton)sender).CommandArgument;
@@ -2208,17 +2210,60 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
     }
     protected void btnConfirmationDeadline_Click(object sender, EventArgs e)
     {
-        //string query = @"insert into tblSetting(f1,f2,f3,f4) values(@CDTue,@CDThu,@CDFri,@CDSun)";
-        //cmd.CommandText = query;
-        //cmd.Parameters.AddWithValue("@CDTue", txtCDTuesday.Text);
-        //cmd.Parameters.AddWithValue("@CDThu", txtCDThursday.Text);
-        //cmd.Parameters.AddWithValue("@CDFri", txtCDFriday.Text);
-        //cmd.Parameters.AddWithValue("@CDSun", txtCDSunday.Text);
-        //cmd.Connection = con;
-        //con.Open();
-        //cmd.ExecuteNonQuery();
-        //con.Close();
-        
+        try
+        {  //string query = @"insert into tblSetting(f1,f2,f3,f4) values(@CDTue,@CDThu,@CDFri,@CDSun)";
+           //cmd.CommandText = query;
+           //cmd.Parameters.AddWithValue("@CDTue", txtCDTuesday.Text);
+           //cmd.Parameters.AddWithValue("@CDThu", txtCDThursday.Text);
+           //cmd.Parameters.AddWithValue("@CDFri", txtCDFriday.Text);
+           //cmd.Parameters.AddWithValue("@CDSun", txtCDSunday.Text);
+           //cmd.Connection = con;
+           //con.Open();
+           //cmd.ExecuteNonQuery();
+           //con.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("update tblConfirmationDeadline set ConfirmationTuesday='" + txtboxTuesday.Text + "',ConfirmationThursday='" + txtboxThursday.Text + "',ConfirmationFriday='" + txtboxFriday.Text + "',ConfirmationSunday='" + txtboxSunday.Text + "' where id=" + 10, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        catch (Exception)
+        {
 
+            throw;
+        }
+    }
+    protected void GetData()
+    {
+        try
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter adp = new SqlDataAdapter("select * from tblConfirmationDeadline", con);
+            adp.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                txtboxTuesday.Text = ds.Tables[0].Rows[0][1].ToString();
+                txtboxThursday.Text = ds.Tables[0].Rows[0][2].ToString();
+                txtboxFriday.Text = ds.Tables[0].Rows[0][3].ToString();
+                txtboxSunday.Text = ds.Tables[0].Rows[0][4].ToString();
+            }
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }
+
+
+

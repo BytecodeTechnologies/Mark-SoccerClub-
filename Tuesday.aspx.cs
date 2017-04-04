@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Net.Mail;
-using System.Configuration;
 
 
 public partial class Tuesday : System.Web.UI.Page
 {
-    SqlConnection con = new SqlConnection(ConfigurationSettings.AppSettings["ConnectionInfo"]);
+    SqlConnection con = new SqlConnection("Server=speedwell.arvixe.com;Database=canadiansoccerclub;User Id=mijamal;Password=2014db!@#$");
     SqlCommand cmd = new SqlCommand();
 
     int NoOFPlayerReq = 0;
@@ -47,7 +46,7 @@ public partial class Tuesday : System.Web.UI.Page
             if (ds.Tables[0].Rows[0]["RoleID"].ToString() == "2")
             {
                 Session["email"] = "no";
-                SqlDataAdapter adp = new SqlDataAdapter("select * from mijamal.tblSetting", con);
+                SqlDataAdapter adp = new SqlDataAdapter("select * from tblSetting", con);
                 DataSet ds2 = new DataSet();
                 adp.Fill(ds2);
 
@@ -59,7 +58,7 @@ public partial class Tuesday : System.Web.UI.Page
                 adp = null;
                 ds2 = null;
 
-                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,ispaid from mijamal.tblPracticeConfirmation1 where IsAttending=1 and IsDeleted=0 and IsOthers=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
+                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,ispaid from tblPracticeConfirmation1 where IsAttending=1 and IsDeleted=0 and IsOthers=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
 
                 ds2 = new DataSet();
                 adp.Fill(ds2);
@@ -73,7 +72,7 @@ public partial class Tuesday : System.Web.UI.Page
                 adp = new SqlDataAdapter();
 
                 Label41.Text = "Players that have confirmed attendance (after Monday 12:00 PM)";
-                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,ispaid from mijamal.tblPracticeConfirmation1 where IsAttending=1 and IsDeleted=0 and isOthers=1 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
+                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')' as PName, CDate,ispaid from tblPracticeConfirmation1 where IsAttending=1 and IsDeleted=0 and isOthers=1 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
 
                 ds = new DataSet();
                 adp.Fill(ds);
@@ -88,7 +87,7 @@ public partial class Tuesday : System.Web.UI.Page
                 //string auery3 = "; select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')'+' - '+ convert(varchar(19),CDate) as PName, CDate from tblPracticeConfirmation1  where IsDeleted=0 and NextPDate='" + getNextPDate() + "' and IsAttending =0";
                 adp = new SqlDataAdapter();
 
-                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')'+' - '+ convert(varchar(19),CDate) as PName, CDate,ispaid from mijamal.tblPracticeConfirmation1 where IsAttending=0 and IsConfirmed=1 and IsDeleted=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
+                adp = new SqlDataAdapter("select ID,UserId, Fname +' '+Sname +' ('+ PlayerID+ ')'+' - '+ convert(varchar(19),CDate) as PName, CDate,ispaid from tblPracticeConfirmation1 where IsAttending=0 and IsConfirmed=1 and IsDeleted=0 and NextPDate='" + getNextPDate() + "'  order by CDate", con);
 
                 ds = new DataSet();
                 adp.Fill(ds);
@@ -134,8 +133,8 @@ public partial class Tuesday : System.Web.UI.Page
                     {
                         if (Convert.ToBoolean(((DataSet)Session["ds"]).Tables[0].Rows[0]["ispaid1"]) == false)
                         {
-                            //rbYes.Enabled = false;
-                            //rbNo.Enabled = false;
+                            rbYes.Enabled = false;
+                            rbNo.Enabled = false;
                             lbInvitationStatus.Text = "Thank you for your interest in playing with us on " + Convert.ToDateTime(getNextPDate()).ToLongDateString() + ". Please allow the Paid Players to confirm attendance until " + lastDay + " Noon 12:00 PM. Login anytime after that to confirm and if there are free places you can confirm then if you want to attend..";
                             lbInvitationStatus.ForeColor = System.Drawing.Color.Red;
 
@@ -151,8 +150,8 @@ public partial class Tuesday : System.Web.UI.Page
                 }
                 else
                 {
-                    //rbYes.Enabled = false;
-                    //rbYes.Visible = false;
+                    rbYes.Enabled = false;
+                    rbYes.Visible = false;
                     lbInvitationStatus.Text = "Thank you for your interest in playing with us. We have reached the maximum number of players for this Tuesday. If you are a paid player, please log in earlier (before Monday 12:00 PM) If you are a non-paid player log in anytime  after Monday 12:00 PM and a spot will be reserved for you based on availability.";
 
                 }
@@ -187,7 +186,7 @@ public partial class Tuesday : System.Web.UI.Page
         {
             ispaid1m = 0;
         }
-        string table = "mijamal.tblPracticeConfirmation1";
+        string table = "tblPracticeConfirmation1";
 
         SqlDataAdapter adp1 = new SqlDataAdapter("select * from " + table + @" where IsDeleted=0 and UserId='" + ds.Tables[0].Rows[0]["UserId"].ToString() + "' and NextPDate='" + getNextPDate() + "'", con);
         DataSet ds2 = new DataSet();
@@ -207,7 +206,7 @@ public partial class Tuesday : System.Web.UI.Page
             //  cmd.CommandText = @"update " + table + @" set  IsAttending =1,IsOthers=0 where NextPDate='" + getNextPDate() + "' and UserId=" + ds.Tables[0].Rows[0]["UserId"].ToString();
         }
 
-        SqlDataAdapter adp = new SqlDataAdapter("select * from mijamal.tblSetting", con);
+        SqlDataAdapter adp = new SqlDataAdapter("select * from tblSetting", con);
         DataSet ds22 = new DataSet();
         adp.Fill(ds22);
 
@@ -221,8 +220,8 @@ public partial class Tuesday : System.Web.UI.Page
         DataSet ds222 = new DataSet();
         adp.Fill(ds222);
 
-        //if (NoOfPalayerReq > Convert.ToInt32(ds222.Tables[0].Rows[0][0]))
-        //{
+        if (NoOfPalayerReq > Convert.ToInt32(ds222.Tables[0].Rows[0][0]))
+        {
 
             //cmd.Connection = con;
             //con.Open();
@@ -256,7 +255,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
                 lblmsginv.Text = "Attendence confirmation status is updated";
 
 
-                SqlDataAdapter adp3 = new SqlDataAdapter("select * from mijamal.tblSetting", con);
+                SqlDataAdapter adp3 = new SqlDataAdapter("select * from tblSetting", con);
                 DataSet ds3 = new DataSet();
                 adp3.Fill(ds3);
 
@@ -266,24 +265,23 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
                 emailmsg = emailmsg.Replace("{ConfirmedDate}", DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).ToLongDateString());
                 emailmsg = emailmsg.Replace("{PracticeDate}", Convert.ToDateTime(getNextPDate()).ToLongDateString());
 
-                //if (Session["email"].ToString() == "no")
-                //{
-                //    MailMessage ms = new MailMessage("admin@canadiansoccerclub.com", ((DataSet)Session["ds"]).Tables[0].Rows[0]["Email"].ToString(), "Canadian Soccer Practice Attendance Confirmation", emailmsg);
-                //    SmtpClient smtp = new SmtpClient("canadiansoccerclub.com");
-                //    smtp.Credentials = new System.Net.NetworkCredential("admin@canadiansoccerclub.com", "&#24Service");
-                //    smtp.EnableSsl = false;
-                //    ms.IsBodyHtml = true;
-                //    smtp.Send(ms);
-                //    Session["email"] = "yes";
-                //}
-
+                if (Session["email"].ToString() == "no")
+                {
+                    MailMessage ms = new MailMessage("admin@canadiansoccerclub.com", ((DataSet)Session["ds"]).Tables[0].Rows[0]["Email"].ToString(), "Canadian Soccer Practice Attendance Confirmation", emailmsg);
+                    SmtpClient smtp = new SmtpClient("canadiansoccerclub.com");
+                    smtp.Credentials = new System.Net.NetworkCredential("admin@canadiansoccerclub.com", "&#24Service");
+                    smtp.EnableSsl = false;
+                    ms.IsBodyHtml = true;
+                    smtp.Send(ms);
+                    Session["email"] = "yes";
+                }
                 Response.Redirect("option.aspx?done=t");
             }
-        //}
-        //else
-        //{
-        //    Response.Redirect("option.aspx?done=no");
-        //}
+        }
+        else
+        {
+            Response.Redirect("option.aspx?done=no");
+        }
         
     }
 
@@ -293,7 +291,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
         DataSet ds = (DataSet)Session["ds"];
         string table = string.Empty;
 
-        table = "mijamal.tblPracticeConfirmation1";
+        table = "tblPracticeConfirmation1";
 
         SqlDataAdapter adp1 = new SqlDataAdapter("select * from " + table + " where IsDeleted=0 and UserId=" + ds.Tables[0].Rows[0]["UserId"].ToString() + " and NextPDate='" + getNextPDate() + "'", con);
         DataSet ds2 = new DataSet();
@@ -336,7 +334,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
         lblmsginv.Text = "Attendence confirmation status is updated";
 
 
-        SqlDataAdapter adp3 = new SqlDataAdapter("select * from mijamal.tblSetting", con);
+        SqlDataAdapter adp3 = new SqlDataAdapter("select * from tblSetting", con);
         DataSet ds3 = new DataSet();
         adp3.Fill(ds3);
         String emailmsg = ds3.Tables[0].Rows[0]["DETemplet"].ToString();
@@ -425,15 +423,14 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
         }
     }
 
-
-    public void DeletePlayer(string userid,string NextDate )
+    public void DeletePlayer(string userid, string NextDate)
     {
         try
         {
             string table = "mijamal.tblPracticeConfirmation1";
             SqlCommand cmd = new SqlCommand("delete from " + table + " where userid=" + userid + " and NextPDate='" + NextDate + "'", con);
             con.Open();
-          cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             con.Close();
             cmd.Dispose();
         }
