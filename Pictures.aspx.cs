@@ -23,11 +23,12 @@ public partial class Pictures : System.Web.UI.Page
             DataTable table = new DataTable();
             adapter.Fill(table);
             RepeaterImages.DataSource = table;
+            RepeaterImages.DataBind();
             PagedDataSource pageds = new PagedDataSource();
             DataView dv = new DataView(table);
             pageds.DataSource = dv;
             pageds.AllowPaging = true;
-            pageds.PageSize = 9;
+            pageds.PageSize = 25;
             if (ViewState["PageNumber"] != null)
             {
                 pageds.CurrentPageIndex = Convert.ToInt32(ViewState["PageNumber"]);
@@ -36,7 +37,7 @@ public partial class Pictures : System.Web.UI.Page
             {
                 pageds.CurrentPageIndex = 0;
             }
-            if (pageds.PageCount > 1)
+            if (pageds.PageCount > 0)
             {
                 RepeaterImages.Visible = true;
                 ArrayList pages = new ArrayList();

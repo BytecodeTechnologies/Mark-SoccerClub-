@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,7 +15,6 @@ public partial class Default2 : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            
             BindGrid();
         }
 
@@ -25,15 +25,23 @@ public partial class Default2 : System.Web.UI.Page
         {
             if (UploadImage.HasFile)
             {
-                string fileName = UploadImage.FileName.ToString();
-                UploadImage.PostedFile.SaveAs(Server.MapPath(@"\ImageUpload\" + fileName));
-                string path = @"\ImageUpload\" + fileName;
-                con.Open();
-                SqlCommand cmd = new SqlCommand("insert into tblImages(ImageName,path,IsDeleted,AddedDate,AddedBy) values('" + fileName + "','" + path + "','" + 0 + "','" + DateTime.Now.ToLongDateString() + "','" + 1 + "')", con);
-                cmd.ExecuteNonQuery();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile PostedFile = Request.Files[i];
+                    if (PostedFile.ContentLength > 0)
+                    {
+                        Guid ImageId =Guid.NewGuid();
+                        string FileName = Path.GetFileName(PostedFile.FileName);
+                        PostedFile.SaveAs(Server.MapPath("/ImageUpload/") + ImageId+ FileName );
+                        string path = @"\ImageUpload\" + ImageId + FileName  ;
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("insert into tblImages(ImageName,path,IsDeleted,AddedDate,AddedBy) values('" + FileName + "','" + path + "','" + 0 + "','" + DateTime.Now + "','" + 1 + "')", con);
+                        cmd.ExecuteNonQuery();
+                        BindGrid();
+                        con.Close();
+                    }
+                }
                 lblMsgDisplay.Text = "Image Saved Successfully..!!";
-                BindGrid();
-                con.Close();
             }
         }
         catch (Exception ex)
@@ -45,7 +53,6 @@ public partial class Default2 : System.Web.UI.Page
     {
         try
         {
-           
             SqlDataAdapter adapter = new SqlDataAdapter("select ImageId,ImageName,Path from tblImages where IsDeleted=0 Order By(ImageId) DESC", con);
             DataTable table = new DataTable();
             adapter.Fill(table);

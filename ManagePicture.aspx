@@ -121,7 +121,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" runat="Server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="ImageScript/ImageUploadScript.js"></script>
+    
 
     <asp:Panel ID="adminMenuPanel" runat="server">
         <div id="adminMenu" runat="server" class="menu">
@@ -147,8 +147,10 @@
         <div class="content" style="margin-bottom: 30px">
             <h1>Manage Pictures</h1>
             <br />
-            <a onclick="openPopup()" href="#">Add New Image</a>
-            <%--Code for pop up--%>
+            <div style="margin-top:10px;margin-bottom:20px">
+            <a onclick="openPopup()"  class="btn btn-success">Add New Image</a>
+            </div>
+                <%--Code for pop up--%>
             <div id="light" class="white_content" style="height:auto">
 
                 <div style="width: 100%; display: inline-table; text-align: right; margin-bottom: 10px; padding: 2px";>
@@ -157,11 +159,11 @@
                 </div>
                 <div id="viewform">
                     <h4 style="color: black;">Add new Image</h4>
-                    <asp:FileUpload ID="UploadImage" runat="server" onchange="ShowImagePreview(this);" />
+                    <asp:FileUpload ID="UploadImage" runat="server" onchange="ShowImagePreview(this);" Multiple="multiple" style="margin-bottom:10px;color:black;" />
     <div id="ImgPreView"></div>
 
-                    <asp:Button ID="btnSaveImage" runat="server" Text="Save Image" OnClick="btnSaveImage_Click" class="btn btn-success" />
-                    <a href="javascript:void(0)" onclick="ClosePopup()" class="btn btn-default">Cancel </a>
+                    <asp:Button ID="btnSaveImage" runat="server" Text="Save Image" OnClick="btnSaveImage_Click" class="btn btn-success" style="margin-top:10px;" />
+                    <a href="javascript:void(0)" onclick="ClosePopup()" class="btn btn-default" style="margin-top:10px;">Cancel </a>
                 </div>
             </div>
             <div id="fade" class="black_overlay"></div>
@@ -176,7 +178,7 @@
                     <Columns>
                         <asp:BoundField HeaderText="ImageName" ItemStyle-Width="30%" DataField="ImageName" ItemStyle-HorizontalAlign="Center"   />
                         
-                        <asp:TemplateField HeaderText="Image" ItemStyle-Width="40%">
+                        <asp:TemplateField HeaderText="Image" ItemStyle-Width="40%" >
                             
                             <ItemTemplate>
                                 <img src="<%# Eval("Path") %>" height="20%" width="100%" />
@@ -186,7 +188,7 @@
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemTemplate >
                                 <asp:LinkButton CommandArgument='<%# Eval("ImageId") %>' style="width:30px"
-                                    ID="lbtnDelete1" ForeColor="Red" runat="server" Text="Delete" OnClick="lbtnDelete1_Click1"></asp:LinkButton>
+                                    ID="lbtnDelete1" ForeColor="Red" runat="server" Text="Delete" OnClick="lbtnDelete1_Click1" OnClientClick="javascript:return confirm('Are you sure, you want to delete?')"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -199,35 +201,10 @@
                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                     <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
-
             </div>
-
-
         </div>
-
     </div>
-   <%-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>--%>
-    <script type="text/javascript">
-        $(document).ready(function () {
-         });
-         function ShowImagePreview(input) {
-                debugger;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    debugger;
-                    $("#ImgPreView").empty();
-                    $("#ImgPreView").append("<img src='" +e.target.result + "' height='200px';width='200px' />")
-                <%--  $("#<%=UploadImage.ClientID%>").prop('src', e.target.result)
-                        .width(240)
-                        .height(150);--%>
-                };
-                reader.readAsDataURL(input.files[0]);
-                }
-            };
-       
-    </script>
-    
-
+    <script type="text/javascript" src="ImageScript/ImagePreviewScript.js"></script>
+    <script src="ImageScript/ImageUploadScript.js"></script>
 </asp:Content>
 

@@ -14,7 +14,7 @@
             </p>--%>
             <asp:Repeater ID="RepeaterImages" runat="server">
                 <ItemTemplate>
-                    <div style="width: 31%; display: inline-table">
+                    <div style="width: 19%; display: inline-table">
                         <a class="example-image-link" href="<%# Eval("Path") %>" data-lightbox="example-1">
                             <img class="example-image" src="<%# Eval("Path") %>" alt="image-1" width="100%" height="200px" /></a>
                     </div>

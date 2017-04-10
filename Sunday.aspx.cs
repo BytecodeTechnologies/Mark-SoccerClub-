@@ -49,9 +49,17 @@ public partial class Sunday : System.Web.UI.Page
                 SqlDataAdapter adp = new SqlDataAdapter("select * from tblSetting", con);
                 DataSet ds2 = new DataSet();
                 adp.Fill(ds2);
-
+                string sunday = "";
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Select ConfirmationSunday from tblConfirmationDeadline", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    sunday = reader["ConfirmationSunday"].ToString();
+                }
+                reader.Close();
                 Int32 NoOfPalayerReq = Convert.ToInt32(ds2.Tables[0].Rows[0]["NoOfPalayerReq"]);
-                Int32 ConfirmationDeadline = Convert.ToInt32(ds2.Tables[0].Rows[0][3]);
+                Int32 ConfirmationDeadline = Convert.ToInt32(sunday);
                 adp = null;
                 ds2 = null;
 
@@ -150,13 +158,14 @@ public partial class Sunday : System.Web.UI.Page
             {
                 Response.Redirect("default.aspx");
             }
-            
+            con.Close();
         }
 
 
 
 
     }
+  
     protected void Timer1_Tick(object sender, EventArgs e)
     {
         lblTime.Text = DateTime.UtcNow.AddHours(-4.00).AddHours(DLHour).ToLongDateString() + " " + DateTime.UtcNow.AddHours(-4.00).AddHours(DLHour).ToLongTimeString();

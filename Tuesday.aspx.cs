@@ -49,11 +49,18 @@ public partial class Tuesday : System.Web.UI.Page
                 SqlDataAdapter adp = new SqlDataAdapter("select * from tblSetting", con);
                 DataSet ds2 = new DataSet();
                 adp.Fill(ds2);
-
+                con.Open();
+                string tuesday = "";
+                SqlCommand cmd = new SqlCommand("Select ConfirmationTuesday from tblConfirmationDeadline", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    tuesday = reader["ConfirmationTuesday"].ToString();
+                }
+                reader.Close();
                 Int32 NoOfPalayerReq = Convert.ToInt32(ds2.Tables[0].Rows[0]["NoOfPalayerReq"]);
                 
-                
-                Int32 ConfirmationDeadline = Convert.ToInt32(ds2.Tables[0].Rows[0][3]);
+                Int32 ConfirmationDeadline = Convert.ToInt32(tuesday);
 
                 adp = null;
                 ds2 = null;
@@ -163,7 +170,7 @@ public partial class Tuesday : System.Web.UI.Page
             }
 
         }
-
+        con.Close();
 
 
 
@@ -282,7 +289,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
         {
             Response.Redirect("option.aspx?done=no");
         }
-        
+
     }
 
     protected void rbNo_CheckedChanged(object sender, EventArgs e)
@@ -361,7 +368,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
     {
         double days = 0.0;
         string day = DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).DayOfWeek.ToString();
-        
+
         if (Session["thu"] != null)//Tuesday
         {
             if (day == "Monday")
@@ -391,7 +398,7 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
             if (day == "Sunday")
             {
                 days = 2.0;// 4.0;
-            }     
+            }
 
         }
         return DateTime.UtcNow.AddHours(-4.0).AddHours(DLHour).AddDays(days).ToShortDateString();
@@ -439,6 +446,6 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
             Response.Write(cc.Message);
         }
     }
-   
+
 
 }

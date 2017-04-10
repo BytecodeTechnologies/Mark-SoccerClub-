@@ -338,7 +338,7 @@ public partial class Main : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
         Int32 totp = 0;
         SqlDataAdapter adpd = new SqlDataAdapter("select PortNumber from mijamal.tblSetting", con);
         DataSet dsd = new DataSet();
@@ -361,7 +361,7 @@ public partial class Main : System.Web.UI.Page
         DataSet ds = new DataSet();
         if (!IsPostBack)
         {
-            GetData();  
+            GetData();
             Session["email"] = "no";
             Session["emails"] = "no";
             if (Session["ds"] != null)
@@ -2210,22 +2210,16 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
     }
     protected void btnConfirmationDeadline_Click(object sender, EventArgs e)
     {
-        try
-        {  //string query = @"insert into tblSetting(f1,f2,f3,f4) values(@CDTue,@CDThu,@CDFri,@CDSun)";
-           //cmd.CommandText = query;
-           //cmd.Parameters.AddWithValue("@CDTue", txtCDTuesday.Text);
-           //cmd.Parameters.AddWithValue("@CDThu", txtCDThursday.Text);
-           //cmd.Parameters.AddWithValue("@CDFri", txtCDFriday.Text);
-           //cmd.Parameters.AddWithValue("@CDSun", txtCDSunday.Text);
-           //cmd.Connection = con;
-           //con.Open();
-           //cmd.ExecuteNonQuery();
-           //con.Close();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+        //string query = @"insert into tblSetting(f1,f2,f3,f4) values(@CDTue,@CDThu,@CDFri,@CDSun)";
+        //cmd.CommandText = query;
+        //cmd.Parameters.AddWithValue("@CDTue", txtCDTuesday.Text);
+        //cmd.Parameters.AddWithValue("@CDThu", txtCDThursday.Text);
+        //cmd.Parameters.AddWithValue("@CDFri", txtCDFriday.Text);
+        //cmd.Parameters.AddWithValue("@CDSun", txtCDSunday.Text);
+        //cmd.Connection = con;
+        //con.Open();
+        //cmd.ExecuteNonQuery();
+        //con.Close();
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -2234,12 +2228,12 @@ values ('" + ds.Tables[0].Rows[0]["UserId"].ToString() + "','" + getNextPDate() 
             con.Open();
             SqlCommand cmd = new SqlCommand("update tblConfirmationDeadline set ConfirmationTuesday='" + txtboxTuesday.Text + "',ConfirmationThursday='" + txtboxThursday.Text + "',ConfirmationFriday='" + txtboxFriday.Text + "',ConfirmationSunday='" + txtboxSunday.Text + "' where id=" + 10, con);
             cmd.ExecuteNonQuery();
+            lblConfirmation.Text = "Confirmation Deadline Saved Successfully..!!";
             con.Close();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            throw ex;
         }
     }
     protected void GetData()

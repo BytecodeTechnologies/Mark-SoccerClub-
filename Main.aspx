@@ -160,30 +160,31 @@
 
          <div id="bodyContainer">
         <div class="content" style="margin-bottom: 30px">
-          
+            
             <br />
-        
+       
             <%--Code for pop up--%>
             <div id="light" class="white_content" style="height:auto">
-
+                
                 <div style="width: 100%; display: inline-table; text-align: right; margin-bottom: 10px; padding: 2px";>
                     <a href="javascript:void(0)" onclick="ClosePopup()">X
                     </a>
                 </div>
                 <div id="viewform">
+                    
                    <table>
                 <tr>
-                    <%--<asp:Label ID="Label53" runat="server"></asp:Label>--%>
+                  
                     <td class="labelcolor">Confirmation Deadline for TuesDay</td>
                     <td>
-                        <asp:TextBox ID="txtboxTuesday" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxTuesday" runat="server" AutoComplete="off"></asp:TextBox></td>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Only numerals allowed!"
                         ControlToValidate="txtboxTuesday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
                 </tr>
                 <tr>
                     <td class="labelcolor">Confirmation Deadline for Thursday</td>
                     <td>
-                        <asp:TextBox ID="txtboxThursday" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxThursday" runat="server" AutoComplete="off"></asp:TextBox></td>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Only numerals allowed!"
                         ControlToValidate="txtboxThursday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
 
@@ -191,7 +192,7 @@
                 <tr>
                     <td class="labelcolor">Confirmation Deadline for Friday</td>
                     <td>
-                        <asp:TextBox ID="txtboxFriday" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxFriday" runat="server" AutoComplete="off"></asp:TextBox></td>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Only numerals allowed!"
                         ControlToValidate="txtboxFriday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
 
@@ -199,7 +200,7 @@
                 <tr>
                     <td class="labelcolor">Confirmation Deadline for Sunday</td>
                     <td>
-                        <asp:TextBox ID="txtboxSunday" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtboxSunday" runat="server" AutoComplete="off"></asp:TextBox></td>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ErrorMessage="Only numerals allowed!"
                         ControlToValidate="txtboxSunday" Display="Dynamic" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
 
@@ -247,12 +248,14 @@
         <br />
         <asp:Image ID="imageHeader" runat="server" ImageUrl="Images/header.jpg" Width="909px"
             Height="250px" />
+            
         <asp:MultiView ID="mvMain" runat="server" ActiveViewIndex="0">
 
             <asp:View ID="vSettings" runat="server">
                 <asp:Label ID="Label2" runat="server" Text="Settings" Font-Bold="True" Font-Underline="True"></asp:Label>
                 <br />
                 <br />
+                 <asp:Label ID="lblConfirmation" runat="server" ForeColor="Green"></asp:Label>
                 <br />
                 <a href="#" style="color: white" id="lnkConfirmationDeadline" onclick="openPopup();" runat="server">Confirmation Deadline</a>
                 <%--<asp:Button ID="lnkConfirmationDeadline" runat="server" Text="Confirmation Deadline" />--%>
