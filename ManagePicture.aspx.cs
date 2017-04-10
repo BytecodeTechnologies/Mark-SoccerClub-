@@ -120,23 +120,23 @@ public partial class Default2 : System.Web.UI.Page
         BindGrid();
     }
 
-protected void lbtnDelete1_Click1(object sender, EventArgs e)
-{
-    try
+    protected void lbtnDelete1_Click1(object sender, EventArgs e)
     {
-        string query = "update tblImages set IsDeleted=1 where ImageId=" + ((LinkButton)sender).CommandArgument;
-        SqlCommand cmd = new SqlCommand();
-        cmd.CommandText = query;
-        cmd.Connection = con;
-        con.Open();
-        cmd.ExecuteNonQuery();
-        lblMsgDisplay.Text = "Image Deleted Successfully..!!";
-        BindGrid();
-        con.Close();
+        try
+        {
+            string query = "update tblImages set IsDeleted=1 where ImageId=" + ((LinkButton)sender).CommandArgument;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = query;
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            lblMsgDisplay.Text = "Image Deleted Successfully..!!";
+            BindGrid();
+            con.Close();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
-    catch (Exception ex)
-    {
-        throw ex;
-    }
-}
 }
