@@ -202,6 +202,17 @@
                     <SortedDescendingHeaderStyle BackColor="#383838" />
                 </asp:GridView>
             </div>
+             <div style="width: 100%; display: inline-block; margin-top: 20px">
+                <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnPage"
+                            Style="padding: 8px; margin: 2px; background: #ffa100; border: solid 1px #666; font: 8pt tahoma;"
+                            CommandName="Page" CommandArgument="<%# Container.DataItem %>"
+                            runat="server" ForeColor="White" Font-Bold="True"><%# Container.DataItem %>
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="ImageScript/ImagePreviewScript.js"></script>

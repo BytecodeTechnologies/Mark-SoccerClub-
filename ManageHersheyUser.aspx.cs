@@ -12,7 +12,17 @@ public partial class ManageHersheyUser : System.Web.UI.Page
     SqlConnection con = new SqlConnection(@"Server=speedwell.arvixe.com;Database=canadiansoccerclub;User Id=mijamal;Password=2014db!@#$");
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindGrid();
+        if (!IsPostBack)
+        {
+            if (Session["ds"] != null)
+            {
+                BindGrid();
+            }
+            else
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
     }
     protected void BindGrid()
     {
