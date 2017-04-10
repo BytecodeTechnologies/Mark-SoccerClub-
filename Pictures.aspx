@@ -6,12 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div id="bodyContainer">
-        <div style="" class="content">
+        <div style="width:100%" class="content">
             <h1>Pictures </h1>
-
-            <%--   <p>
-                <asp:Label ID="lblContactus" runat="server"></asp:Label>
-            </p>--%>
             <asp:Repeater ID="RepeaterImages" runat="server">
                 <ItemTemplate>
                     <div style="width: 19%; display: inline-table">

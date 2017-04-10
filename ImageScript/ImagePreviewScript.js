@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 });
 function ShowImagePreview(input) {
-    alert("ded");
     if (input.files.length > 5) {
         alert("You cannot choose more than 5 images.");
         var fileUpload = $("[id*=UploadImage]");
@@ -17,7 +16,6 @@ function ShowImagePreview(input) {
     }
     else {
         if (input.files && input.files[0]) {
-            alert("wds");
             $("#ImgPreView").empty();
             for (var i = 0; i < input.files.length; i++) {
                 var reader = new FileReader();
