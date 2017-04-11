@@ -16,7 +16,15 @@ public partial class ManageHersheyUser : System.Web.UI.Page
         {
             if (Session["ds"] != null)
             {
-                BindGrid();
+                string roleId = ((DataSet)Session["ds"]).Tables[0].Rows[0]["RoleID"].ToString();
+                if (roleId == "1")
+                {
+                    BindGrid();
+                }
+                else if(roleId == "2")
+                {
+                    Response.Redirect("option.aspx");
+                }
             }
             else
             {
@@ -24,6 +32,7 @@ public partial class ManageHersheyUser : System.Web.UI.Page
             }
         }
     }
+
     protected void BindGrid()
     {
         try
@@ -51,7 +60,7 @@ public partial class ManageHersheyUser : System.Web.UI.Page
             cmd.ExecuteNonQuery();
             lblMsgDisplay.Text = "Image Retain Successfully..!!";
             BindGrid();
-            
+
             con.Close();
         }
         catch (Exception)

@@ -79,12 +79,10 @@ public partial class Default2 : System.Web.UI.Page
         {
 
         }
-
         if (!IsValid)
         {
             return;
         }
-
     }
 
     protected void btnRegSubmit_Click(object sender, ImageClickEventArgs e)

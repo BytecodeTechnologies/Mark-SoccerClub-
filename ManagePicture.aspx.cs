@@ -18,7 +18,15 @@ public partial class Default2 : System.Web.UI.Page
         {
             if (Session["ds"] != null)
             {
-                BindGrid();
+                string roleId = ((DataSet)Session["ds"]).Tables[0].Rows[0]["RoleID"].ToString();
+                if (roleId == "1")
+                {
+                    BindGrid();
+                }
+                else if(roleId == "2")
+                {
+                    Response.Redirect("option.aspx");
+                }
             }
             else
             {

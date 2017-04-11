@@ -332,9 +332,7 @@ public partial class Main : System.Web.UI.Page
         lbOtherUsersConfirmingAttendance.DataBind();
         lblTotPlayer.Text = "Total Players: " + (lbPlayersConfirmingAttendance.Items.Count + lbOtherUsersConfirmingAttendance.Items.Count).ToString();
 
-
     }
-
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -905,7 +903,7 @@ public partial class Main : System.Web.UI.Page
                 BindAllUsers();
 
             }
-
+          
             if (Request.QueryString["action"] != null && Request.QueryString["action"].ToString() == "confirmed")
             {
                 mvMain.ActiveViewIndex = 5;
