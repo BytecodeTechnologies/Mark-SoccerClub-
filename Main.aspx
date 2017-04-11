@@ -322,7 +322,7 @@
                                 ControlToValidate="tbPayment" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
                         </td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                         <td>
                             <asp:Label ID="Label4" runat="server" Text="Confirmation Deadline (days before practice date):"></asp:Label>
                         </td>
@@ -331,7 +331,7 @@
                             <asp:RegularExpressionValidator ID="revConfirmationDeadline" runat="server" ErrorMessage="Only numerals allowed!"
                                 ControlToValidate="tbConfirmationDeadline" ValidationExpression="[0-9]+" ForeColor="Red">Only numerals allowed!</asp:RegularExpressionValidator>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr valign="top">
                         <td>
                             <asp:Label ID="Label24" runat="server" Text="Home Page Video Mark-up:"></asp:Label>

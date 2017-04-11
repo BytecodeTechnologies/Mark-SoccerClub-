@@ -1196,7 +1196,7 @@ public partial class Main : System.Web.UI.Page
             // cldrPracticeDate.SelectedDate = Convert.ToDateTime(getNextPDate());// Convert.ToDateTime(ds.Tables[0].Rows[0][1].ToString());
             // lbPracticeDate.Text = Convert.ToDateTime(getNextPDate()).ToLongDateString(); // ds.Tables[0].Rows[0][1].ToString();
             tbPracticePlayersNumber.Text = ds.Tables[0].Rows[0][2].ToString();
-            tbConfirmationDeadline.Text = ds.Tables[0].Rows[0][3].ToString();
+            //tbConfirmationDeadline.Text = ds.Tables[0].Rows[0][3].ToString();
             tbHomeVideoMarkUp.Text = ds.Tables[0].Rows[0][4].ToString();
             cbEnableEmail.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0][5].ToString());
             cbEnableSSL.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0][6].ToString());
@@ -1516,7 +1516,7 @@ public partial class Main : System.Web.UI.Page
                             ContactUsTemplet,CETemplet1,CETemplet2,CETempletSat,payment)
             values(" + "'" + DateTime.Now.ToString("dddd, MMMM dd, yyyy") + "','" +
                                     tbPracticePlayersNumber.Text + "','" +
-                                    tbConfirmationDeadline.Text + "','" +
+                                     1  + "','" +
                                     tbHomeVideoMarkUp.Text + "','" +
                                     cbEnableEmail.Checked + "','" +
                                     cbEnableSSL.Checked + "','" +
