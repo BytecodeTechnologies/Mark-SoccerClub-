@@ -21,7 +21,7 @@ public partial class ManageHersheyUser : System.Web.UI.Page
                 {
                     BindGrid();
                 }
-                else if(roleId == "2")
+                else if (roleId == "2")
                 {
                     Response.Redirect("option.aspx");
                 }

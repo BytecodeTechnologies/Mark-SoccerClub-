@@ -46,7 +46,6 @@ public partial class Default2 : System.Web.UI.Page
     }
 
     protected void btnLogIn_Click(object sender, ImageClickEventArgs e)
-    
     {
         try
         {
