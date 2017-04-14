@@ -1,0 +1,10 @@
+﻿body {
+
+}
+.five-images a img {
+    opacity: 0.5;
+}
+.five-images{overflow:hidden;}
+.five-images:hover img {
+    opacity: 1;
+}

@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="ImageScript/lightbox.min.css" rel="stylesheet" />
+    <link href="CssFiles/PicturesCss.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -10,14 +11,14 @@
             <h1>Pictures </h1>
             <asp:Repeater ID="RepeaterImages" runat="server">
                 <ItemTemplate>
-                    <div style="width: 19%; display: inline-table">
+                    <div class="five-images"  style="width: 19%; display: inline-table">
                         <a class="example-image-link" href="<%# Eval("Path") %>" data-lightbox="example-1">
-                            <img class="example-image" src="<%# Eval("Path") %>" alt="image-1" width="100%" height="200px" /></a>
+                            <img class="example-image" src="<%# Eval("Path") %>" alt="image-1" width="95%" height="185px" style="margin-top:10px;" /></a>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
 
-            <div style="width: 100%; display: inline-block; margin-top: 20px">
+            <div  style="width: 100%; display: inline-block; margin-top: 20px">
                 <asp:Repeater ID="rptPaging" runat="server" OnItemCommand="rptPaging_ItemCommand">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnPage"
